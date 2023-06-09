@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>나의 홈페이지</title>
+  <style>
+    /* CSS 스타일링 */
+    .portfolio-img {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 첫 페이지 -->
+  <div id="home">
+    <h1>나의 포트폴리오</h1>
+    <div id="portfolio">
+      <img class="portfolio-img" src="portfolio1.jpg" alt="포트폴리오 1">
+      <img class="portfolio-img" src="portfolio2.jpg" alt="포트폴리오 2">
+      <img class="portfolio-img" src="portfolio3.jpg" alt="포트폴리오 3">
+    </div>
+    <button onclick="goToAbout()">나를 소개하는 페이지로 이동</button>
+  </div>
+
+  <!-- 나를 소개하는 페이지 -->
+  <div id="about" style="display: none;">
+    <h1>나에 대한 소개</h1>
+    <p>나에 대한 정보와 사진 등을 입력하세요.</p>
+    <button onclick="goToHome()">첫 페이지로 이동</button>
+  </div>
+
+  <script>
+    // 자바스크립트 코드
+    var currentIndex = 0;
+    var portfolioImages = document.getElementsByClassName("portfolio-img");
+
+    // 포트폴리오 이미지 변경 함수
+    function changeImage() {
+      for (var i = 0; i < portfolioImages.length; i++) {
+        portfolioImages[i].style.display = "none";
+      }
+      currentIndex = (currentIndex + 1) % portfolioImages.length;
+      portfolioImages[currentIndex].style.display = "block";
+    }
+
+    // 클릭 시 해당 페이지로 이동하는 함수
+    function goToPage(pageId) {
+      document.getElementById("home").style.display = "none";
+      document.getElementById("about").style.display = "none";
+      document.getElementById(pageId).style.display = "block";
+    }
+
+    // 나를 소개하는 페이지로 이동하는 함수
+    function goToAbout() {
+      goToPage("about");
+    }
+
+    // 첫 페이지로 이동하는 함수
+    function goToHome() {
+      goToPage("home");
+    }
+
+    // 3초마다 포트폴리오 이미지 변경
+    setInterval(changeImage, 3000);
+  </script>
+</body>
+</html>
